@@ -19,6 +19,7 @@ struct HomeView: View {
             .listRowInsets(EdgeInsets())
         }
       }
+      .listStyle(.insetGrouped)
       .task {
         await viewModel.fetchPopularMovies()
       }
