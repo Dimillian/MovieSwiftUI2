@@ -11,10 +11,14 @@
 		9FE9850E26747D4000FD0138 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9850D26747D4000FD0138 /* Tests_macOS.swift */; };
 		9FE9850F26747D4000FD0138 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE984ED26747D3F00FD0138 /* Root.swift */; };
 		9FE9851026747D4000FD0138 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE984ED26747D3F00FD0138 /* Root.swift */; };
-		9FE9851126747D4000FD0138 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE984EE26747D3F00FD0138 /* ContentView.swift */; };
-		9FE9851226747D4000FD0138 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE984EE26747D3F00FD0138 /* ContentView.swift */; };
+		9FE9851126747D4000FD0138 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE984EE26747D3F00FD0138 /* HomeView.swift */; };
+		9FE9851226747D4000FD0138 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE984EE26747D3F00FD0138 /* HomeView.swift */; };
 		9FE9851326747D4000FD0138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE984EF26747D4000FD0138 /* Assets.xcassets */; };
 		9FE9851426747D4000FD0138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE984EF26747D4000FD0138 /* Assets.xcassets */; };
+		9FE985282674900E00FD0138 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE985272674900E00FD0138 /* HomeViewModel.swift */; };
+		9FE985292674900E00FD0138 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE985272674900E00FD0138 /* HomeViewModel.swift */; };
+		9FE9852C267490DB00FD0138 /* Backend in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE9852B267490DB00FD0138 /* Backend */; };
+		9FE9852E267490DB00FD0138 /* UI in Frameworks */ = {isa = PBXBuildFile; productRef = 9FE9852D267490DB00FD0138 /* UI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		9FE984ED26747D3F00FD0138 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
-		9FE984EE26747D3F00FD0138 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9FE984EE26747D3F00FD0138 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9FE984EF26747D4000FD0138 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FE984F426747D4000FD0138 /* MovieSwiftUI2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSwiftUI2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE984FA26747D4000FD0138 /* MovieSwiftUI2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSwiftUI2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +50,7 @@
 		9FE9850D26747D4000FD0138 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9FE9852326747D7B00FD0138 /* Backend */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Backend; path = Packages/Backend; sourceTree = "<group>"; };
 		9FE9852426747D8A00FD0138 /* UI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UI; path = Packages/UI; sourceTree = "<group>"; };
+		9FE985272674900E00FD0138 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FE9852E267490DB00FD0138 /* UI in Frameworks */,
+				9FE9852C267490DB00FD0138 /* Backend in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +97,7 @@
 				9FE9852426747D8A00FD0138 /* UI */,
 				9FE9852326747D7B00FD0138 /* Backend */,
 				9FE984F526747D4000FD0138 /* Products */,
+				9FE9852A267490DB00FD0138 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,9 +148,17 @@
 		9FE9852626747E7B00FD0138 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				9FE984EE26747D3F00FD0138 /* ContentView.swift */,
+				9FE984EE26747D3F00FD0138 /* HomeView.swift */,
+				9FE985272674900E00FD0138 /* HomeViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		9FE9852A267490DB00FD0138 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +177,10 @@
 			dependencies = (
 			);
 			name = "MovieSwiftUI2 (iOS)";
+			packageProductDependencies = (
+				9FE9852B267490DB00FD0138 /* Backend */,
+				9FE9852D267490DB00FD0138 /* UI */,
+			);
 			productName = "MovieSwiftUI2 (iOS)";
 			productReference = 9FE984F426747D4000FD0138 /* MovieSwiftUI2.app */;
 			productType = "com.apple.product-type.application";
@@ -303,7 +323,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FE9851126747D4000FD0138 /* ContentView.swift in Sources */,
+				9FE9851126747D4000FD0138 /* HomeView.swift in Sources */,
+				9FE985282674900E00FD0138 /* HomeViewModel.swift in Sources */,
 				9FE9850F26747D4000FD0138 /* Root.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +333,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FE9851226747D4000FD0138 /* ContentView.swift in Sources */,
+				9FE9851226747D4000FD0138 /* HomeView.swift in Sources */,
+				9FE985292674900E00FD0138 /* HomeViewModel.swift in Sources */,
 				9FE9851026747D4000FD0138 /* Root.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -729,6 +751,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9FE9852B267490DB00FD0138 /* Backend */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Backend;
+		};
+		9FE9852D267490DB00FD0138 /* UI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9FE984E826747D3F00FD0138 /* Project object */;
 }

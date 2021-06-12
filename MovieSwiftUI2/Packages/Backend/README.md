@@ -1,3 +1,3 @@
 # Backend
 
-A description of this package.
+This is the model and network layer.

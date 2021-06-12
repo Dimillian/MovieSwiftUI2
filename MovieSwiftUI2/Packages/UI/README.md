@@ -1,3 +1,3 @@
 # UI
 
-A description of this package.
+Small, reusable UI component.
