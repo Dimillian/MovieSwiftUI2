@@ -5,14 +5,25 @@ struct HomeView: View {
   
   var body: some View {
     NavigationView {
-      List(viewModel.movies) { movie in
-        Text(movie.title)
+      List {
+        ForEach(viewModel.movies) { movie in
+          Text(movie.title)
+        }
+        if !viewModel.movies.isEmpty {
+          Rectangle()
+            .fill(Color.clear)
+            .frame(width: 1, height: 1)
+            .task {
+              await viewModel.fetchNextPage()
+            }
+            .listRowInsets(EdgeInsets())
+        }
       }
       .task {
-        await viewModel.fetchPopularMoview()
+        await viewModel.fetchPopularMovies()
       }
       .refreshable {
-        await viewModel.fetchPopularMoview()
+        await viewModel.fetchPopularMovies()
       }
       .searchable(text: $viewModel.searchText)
       .navigationTitle("Movies")
