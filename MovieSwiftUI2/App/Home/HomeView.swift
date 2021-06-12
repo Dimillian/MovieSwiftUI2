@@ -3,6 +3,7 @@ import Backend
 import UI
 
 struct HomeView: View {
+  @Environment(\.isSearching) var isSearching: Bool
   @StateObject var viewModel = HomeViewModel()
   
   private func makeSection(title: String, movies: [Movie]) -> some View {
@@ -49,7 +50,17 @@ struct HomeView: View {
       .refreshable {
         await viewModel.fetchData()
       }
-      .searchable(text: $viewModel.searchText)
+      .searchable(text: $viewModel.searchText) {
+        ForEach(viewModel.searchResults) { movie in
+          Text(movie.title)
+        }
+      }
+      .onReceive(viewModel.$searchText.debounce(for: 0.5, scheduler: DispatchQueue.main),
+                 perform: { query in
+        async {
+          await viewModel.fetchSearch(query: query)
+        }
+      })
       .navigationTitle("Movies")
     }
   }

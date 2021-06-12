@@ -12,6 +12,7 @@ class HomeViewModel: ObservableObject {
   }
   
   @Published var sections: [Section] = []
+  @Published var searchResults: [Movie] = []
   @Published var error: Error?
   @Published var searchText = ""
     
@@ -29,5 +30,12 @@ class HomeViewModel: ObservableObject {
     } catch let error {
       self.error = error
     }
+  }
+  
+  func fetchSearch(query: String) async {
+    do {
+      let results: PaginatedResponse<Movie> = try await Network.shared.GET(endpoint: .searchMovie, params: [.query(query: query)])
+      searchResults = results.results
+    } catch {}
   }
 }
