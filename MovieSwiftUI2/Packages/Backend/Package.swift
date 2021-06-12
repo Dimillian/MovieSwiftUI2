@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
   name: "Backend",
+  platforms: [.iOS(.v14), .macOS(.v11), .tvOS(.v14)],
   products: [
     .library(
       name: "Backend",

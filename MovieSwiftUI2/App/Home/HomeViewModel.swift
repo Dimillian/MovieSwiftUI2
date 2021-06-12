@@ -3,29 +3,29 @@ import Foundation
 import SwiftUI
 import Backend
 
+@MainActor
 class HomeViewModel: ObservableObject {
-  @Published var movies: [Movie] = []
-  @Published var error: Error?
-  @Published var searchText = ""
-  
-  private var currentPage = 1
-  
-  func fetchPopularMovies() async {
-    do {
-      let paginatedMovies: PaginatedResponse<Movie> = try await Network.shared.GET(endpoint: .moviePopular,
-                                                                                   params: [.page(page: 1)])
-      self.movies = paginatedMovies.results
-    } catch let error {
-      self.error = error
-    }
+  struct Section: Identifiable {
+    let id = UUID()
+    let title: String
+    let movies: [Movie]
   }
   
-  func fetchNextPage() async {
+  @Published var sections: [Section] = []
+  @Published var error: Error?
+  @Published var searchText = ""
+    
+  func fetchData() async {
     do {
-      currentPage += 1
-      let paginatedMovies: PaginatedResponse<Movie> = try await Network.shared.GET(endpoint: .moviePopular,
-                                                                                   params: [.page(page: currentPage)])
-      self.movies.append(contentsOf: paginatedMovies.results)
+      async let popularMovies: PaginatedResponse<Movie> = Network.shared.GET(endpoint: .moviePopular)
+      async let trendingMovies: PaginatedResponse<Movie> = Network.shared.GET(endpoint: .trending(mediaType: .movie,
+                                                                                                      timeWindow: .week))
+      async let topRatedMovies: PaginatedResponse<Movie> = Network.shared.GET(endpoint: .topRated)
+      async let upcomingMovies: PaginatedResponse<Movie> = Network.shared.GET(endpoint: .upcoming)
+      self.sections = try await [.init(title: "Popular", movies: popularMovies.results),
+                                  .init(title: "Trending", movies: trendingMovies.results),
+                                  .init(title: "Top Rated", movies: topRatedMovies.results),
+                                  .init(title: "Upcoming", movies: upcomingMovies.results)]
     } catch let error {
       self.error = error
     }

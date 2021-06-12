@@ -36,6 +36,6 @@ public class Network {
   }
   
   private func buildURL(_ endpoint: Endpoint) -> URL {
-    Constants.BASE_URL.appendingPathComponent(endpoint.rawValue)
+    Constants.BASE_URL.appendingPathComponent(endpoint.build())
   }
 }

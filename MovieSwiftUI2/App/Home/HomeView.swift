@@ -1,30 +1,53 @@
 import SwiftUI
+import Backend
+import UI
 
 struct HomeView: View {
   @StateObject var viewModel = HomeViewModel()
   
+  private func makeSection(title: String, movies: [Movie]) -> some View {
+    Section(header: Text(title)
+              .font(.title)
+              .fontWeight(.bold),
+            content: {
+      ScrollView(.horizontal) {
+        LazyHStack(alignment: .center, spacing: 32) {
+          ForEach(movies) { movie in
+            MovieCarrouselView(movie: movie)
+          }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+      }
+      .listRowInsets(EdgeInsets())
+      .listRowBackground(Color.primaryBackground)
+    })
+  }
+  
   var body: some View {
     NavigationView {
       List {
-        ForEach(viewModel.movies) { movie in
-          Text(movie.title)
-        }
-        if !viewModel.movies.isEmpty {
-          Rectangle()
-            .fill(Color.clear)
-            .frame(width: 1, height: 1)
-            .task {
-              await viewModel.fetchNextPage()
-            }
-            .listRowInsets(EdgeInsets())
+        if viewModel.sections.isEmpty {
+          HStack {
+            Spacer()
+            ProgressView()
+              .frame(width: 200, height: 200)
+            Spacer()
+          }
+        } else {
+          ForEach(viewModel.sections) { section in
+            makeSection(title: section.title, movies: section.movies)
+          }
         }
       }
-      .listStyle(.insetGrouped)
+      .background(Color.primaryBackground)
+      .listStyle(.plain)
+      .listRowSeparator(.hidden)
       .task {
-        await viewModel.fetchPopularMovies()
+        await viewModel.fetchData()
       }
       .refreshable {
-        await viewModel.fetchPopularMovies()
+        await viewModel.fetchData()
       }
       .searchable(text: $viewModel.searchText)
       .navigationTitle("Movies")
