@@ -18,15 +18,15 @@ public struct MovieCarrouselView: View {
           image in
           image.resizable()
             .aspectRatio(contentMode: .fill)
-            .blur(radius: 4, opaque: true)
+            .blur(radius: 4, opaque: false)
         }, placeholder: {
             Rectangle()
-            .fill(Color.black)
-            .frame(width: 270, height: 160)
+            .fill(Color.gray)
         })
       }
       Color.black.opacity(0.5)
     }
+    .frame(width: 270)
     .clipShape(RoundedRectangle(cornerRadius: 16))
   }
   
@@ -43,26 +43,31 @@ public struct MovieCarrouselView: View {
             .fill(Color.gray)
         })
         .clipShape(RoundedRectangle(cornerRadius: 4))
-        .frame(width: 80)
+        .frame(width: 80, height: 120)
+        .padding(8)
       }
       VStack(alignment: .leading, spacing: 8) {
         Text(movie.title)
           .font(.title3)
           .fontWeight(.bold)
           .foregroundColor(.white)
-          .lineLimit(2)
-        Text(movie.overview ?? "")
-          .font(.footnote)
-          .foregroundColor(.white)
           .lineLimit(3)
+        if let releaseDate = movie.releaseDateAsDate {
+          Text(releaseDate, style: .date)
+            .font(.footnote)
+            .foregroundColor(.white)
+        }
+        Spacer()
       }
+      .padding(.top, 8)
+      Spacer()
     }
     .padding(8)
-    .frame(width: 270, height: 160)
+    .frame(width: 270, height: 150)
     .background {
       backdropView
     }
-    .shadow(color: .black.opacity(0.5), radius: 5)
+    .shadow(color: .black, radius: 4)
   }
 }
 

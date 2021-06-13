@@ -4,6 +4,7 @@ extension Network {
     case moviePopular
     case topRated
     case upcoming
+    case nowPlaying
     case trending(mediaType: MediaType, timeWindow: TimeWindow)
     case searchMovie
     
@@ -13,6 +14,8 @@ extension Network {
         return "movie/popular"
       case .topRated:
         return "movie/top_rated"
+      case .nowPlaying:
+        return "movie/now_playing"
       case .upcoming:
         return "movie/upcoming"
       case let .trending(mediaType, timeWindow):
